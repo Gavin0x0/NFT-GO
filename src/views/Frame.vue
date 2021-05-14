@@ -20,17 +20,27 @@ export default {
   background-color: #b3c0d1;
   color: #333;
   text-align: center;
-  line-height: 60px;
+  line-height: 6vh;
+  height: 6vh !important;
+  position: fixed;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0;
 }
 
 .el-header {
-  padding: 0;
+  top: 0;
+}
+.el-footer {
+  bottom: 0;
 }
 
 .el-main {
   background-color: #e9eef3;
   color: #333;
   text-align: center;
-  line-height: 160px;
+  margin-top: 6vh;
+  height: 88vh;
 }
 </style>
