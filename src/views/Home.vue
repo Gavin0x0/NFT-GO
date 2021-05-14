@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to HotMaxx" />
+    <HelloWorld msg="Welcome to NFT-GOx" />
     <ul
       class="infinite-list"
       v-infinite-scroll="load"

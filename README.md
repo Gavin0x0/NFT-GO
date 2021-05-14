@@ -1,4 +1,4 @@
-# hotmax
+# NFT-GO
 
 ## Project setup
 ```
