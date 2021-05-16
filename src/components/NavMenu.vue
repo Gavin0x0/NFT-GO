@@ -1,12 +1,13 @@
+<!-- 导航栏 -->
 <template>
   <el-menu
     :default-active="activeIndex"
     mode="horizontal"
     router
     @select="handleSelect"
-    background-color="#ffffff"
-    text-color="#6b778d"
-    active-text-color="#ff502f"
+    background-color="#eeeeee"
+    text-color="#303841"
+    active-text-color="#ff5722"
   >
     <el-menu-item index="/home">首页</el-menu-item>
     <el-submenu index="/class">

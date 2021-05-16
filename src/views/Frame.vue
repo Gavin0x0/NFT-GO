@@ -2,7 +2,7 @@
   <el-container>
     <el-header><nav-menu></nav-menu></el-header>
     <el-main><router-view></router-view></el-main>
-    <el-footer>Footer</el-footer>
+    <el-footer>Copyright © 2021, NFT-GO. Powered by Vue</el-footer>
   </el-container>
 </template>
 
@@ -17,11 +17,13 @@ export default {
 <style scoped>
 .el-header,
 .el-footer {
-  background-color: #b3c0d1;
-  color: #333;
+  background-color: #0000001a;
+
   text-align: center;
-  line-height: 6vh;
-  height: 6vh !important;
+  font-size: 0.5rem;
+  line-height: 4vh;
+  height: 4vh !important;
+  box-shadow: -5px 11px 16px 4px #303841;
   position: fixed;
   left: 0;
   width: 100%;
@@ -30,17 +32,19 @@ export default {
 }
 
 .el-header {
+  color: #303841;
   top: 0;
 }
 .el-footer {
+  color: #494f55;
   bottom: 0;
 }
 
 .el-main {
-  background-color: #e9eef3;
-  color: #333;
+  background-color: #eeeeee;
+  color: #303841;
   text-align: center;
   margin-top: 6vh;
-  height: 88vh;
+  height: 90vh;
 }
 </style>

@@ -1,13 +1,21 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to NFT-GOx" />
+    <HelloWorld msg="Welcome to NFT-GO" />
     <ul
-      class="infinite-list"
+      class="infinite-list row-container"
       v-infinite-scroll="load"
-      infinite-scroll-distance="10"
+      :infinite-scroll-disabled="disabled"
+      infinite-scroll-distance="100"
     >
-      <li v-for="i in count" :key="i" class="infinite-list-item">{{ i }}</li>
+      <el-row :gutter="20">
+        <el-col :span="6" v-for="i in count" :key="i"
+          ><div class="grid-content bg-purple">
+            <goods-card /></div
+        ></el-col>
+      </el-row>
     </ul>
+    <i v-if="loading" class="el-icon-loading loading-icon"></i>
+    <p v-if="noMore" class="no-more-text">没有更多了</p>
     <el-backtop target=".el-main" bottom="80"></el-backtop>
   </div>
 </template>
@@ -15,20 +23,37 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
+import GoodsCard from "../components/GoodsCard.vue";
+
+//TODO响应式布局
 
 export default {
   name: "Home",
   components: {
     HelloWorld,
+    GoodsCard,
   },
   data() {
     return {
       count: 20,
+      loading: false,
     };
+  },
+  computed: {
+    noMore() {
+      return this.count >= 48;
+    },
+    disabled() {
+      return this.loading || this.noMore;
+    },
   },
   methods: {
     load() {
-      this.count += 2;
+      this.loading = true;
+      setTimeout(() => {
+        this.count += 8;
+        this.loading = false;
+      }, 1000);
     },
   },
 };
@@ -36,7 +61,6 @@ export default {
 
 <style scoped>
 .infinite-list {
-  height: 100vh;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -46,8 +70,29 @@ export default {
   align-items: center;
   justify-content: center;
   height: 50px;
-  background: #e8f3fe;
+  background: #00adb5;
   margin: 10px;
-  color: #7dbcfc;
+  color: #eeeeee;
+}
+.loading-icon {
+  font-size: 2rem;
+  color: #ff5722;
+  margin: 2rem;
+}
+.no-more-text {
+  font-size: 1rem;
+  color: darkgray;
+}
+.row-container {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.bg-purple {
+  background: #d3dce6;
+}
+.grid-content {
+  border-radius: 4px;
+  min-height: 160px;
+  margin: 30px;
 }
 </style>

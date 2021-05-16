@@ -15,7 +15,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+h1 {
+  margin-left: 7%;
+  font-size: 4rem;
+  text-align: left;
+  color: #ff5622c4;
 }
 </style>
