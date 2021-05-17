@@ -8,9 +8,16 @@
       infinite-scroll-distance="100"
     >
       <el-row :gutter="20">
-        <el-col :span="6" v-for="i in count" :key="i"
+        <el-col
+          :xs="24"
+          :sm="12"
+          :md="8"
+          :lg="6"
+          :xl="6"
+          v-for="i in count"
+          :key="i"
           ><div class="grid-content bg-purple">
-            <goods-card /></div
+            <goods-card :g_id="i" /></div
         ></el-col>
       </el-row>
     </ul>

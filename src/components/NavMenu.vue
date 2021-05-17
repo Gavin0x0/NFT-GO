@@ -16,7 +16,6 @@
       <el-menu-item index="/2">选项2</el-menu-item>
       <el-menu-item index="/3">选项3</el-menu-item>
     </el-submenu>
-
     <el-menu-item style="float: right" index="/about">关于</el-menu-item>
     <el-menu-item style="float: right" index="/cart">购物车</el-menu-item>
   </el-menu>
