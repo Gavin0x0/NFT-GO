@@ -9,16 +9,13 @@
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="des-col"
         ><div class="grid-content describe-container">
           <div>
-            <div class="good-name">Jobs</div>
-            <p class="good-describe">
-              Do you know that feeling of wonder you get when you travel? Where
-              even common things seem to be magical and fascinating? That desire
-              to observe, rather than simply look at, reality?
-            </p>
+            <div class="good-name">{{ g_name }}</div>
+            <p class="good-describe">{{ g_des }}</p>
           </div>
           <div>
             <div class="good-price">
-              <img src="../assets/dogecoin.png" class="dogecoin" /> 1999.00 DOGE
+              <img src="../assets/dogecoin.png" class="dogecoin" />
+              {{ price }} DOGE
             </div>
 
             <el-button type="primary" @click="buyNow">立即购买</el-button>
@@ -40,16 +37,36 @@ export default {
   data() {
     return {
       price: "199.00",
-      g_name: "好吃的汉堡",
+      g_name: "Hello",
       g_img_url:
-        "https://tva1.sinaimg.cn/large/007e6d0Xgy1gqlw0egffjj30c90ftt8l.jpg",
+        "https://tva1.sinaimg.cn/large/007e6d0Xgy1gqlz9xm1k5j30c909u3yi.jpg",
+      g_des: "Hello world?",
       mock_data: {
         price: "1999.00",
         g_name: "Jobs",
         g_img_url:
           "https://tva1.sinaimg.cn/large/007e6d0Xgy1gqlw0egffjj30c90ftt8l.jpg",
+        g_des:
+          "Do you know that feeling of wonder you get when you travel? \
+        Where even common things seem to be magical and fascinating? \
+        That desire to observe, rather than simply look at, reality?",
       },
     };
+  },
+  mounted() {
+    let g_id = this.$route.params.good_id;
+    if (g_id % 3 == 0) {
+      this.g_img_url = this.mock_data.g_img_url;
+      this.g_name = this.mock_data.g_name;
+      this.price = this.mock_data.price;
+      this.g_des = this.mock_data.g_des;
+    } else if (g_id % 3 == 1) {
+      this.g_img_url =
+        "https://tva1.sinaimg.cn/large/007e6d0Xgy1gqlz9978wrj30c90ft3yc.jpg";
+      this.g_name = "Command";
+      this.price = "588.00";
+      this.g_des = "Command is everything!";
+    }
   },
   methods: {
     goBack() {

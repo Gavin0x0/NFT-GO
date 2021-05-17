@@ -16,7 +16,7 @@
           :xl="6"
           v-for="i in count"
           :key="i"
-          ><div class="grid-content bg-purple">
+          ><div class="card-content">
             <goods-card :g_id="i" /></div
         ></el-col>
       </el-row>
@@ -94,12 +94,10 @@ export default {
   margin-left: 5%;
   margin-right: 5%;
 }
-.bg-purple {
-  background: #d3dce6;
-}
-.grid-content {
+.card-content {
   border-radius: 4px;
   min-height: 160px;
   margin: 30px;
+  height: 100%;
 }
 </style>

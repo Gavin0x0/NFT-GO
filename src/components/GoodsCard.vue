@@ -1,18 +1,25 @@
 <template>
-  <el-card :body-style="{ padding: '0px' }" shadow="hover">
-    <img :src="g_img_url" class="image" @click="showDeatil(g_id)" />
-    <div style="padding: 14px">
-      <div class="good-name" @click="showDeatil(g_id)">{{ g_name }}</div>
-      <div class="bottom">
-        <div class="price" @click="showDeatil(g_id)">
-          <el-tooltip effect="dark" content="DOGE" placement="bottom">
-            <img src="../assets/dogecoin.png" class="dogecoin" />
-          </el-tooltip>
-          {{ price }}
+  <el-card
+    :body-style="{ padding: '0px', height: '100%' }"
+    shadow="hover"
+    style="height: 90%"
+  >
+    <div class="card-content-container">
+      <div></div>
+      <img :src="g_img_url" class="image" @click="showDeatil(g_id)" />
+      <div style="padding: 14px">
+        <div class="good-name" @click="showDeatil(g_id)">{{ g_name }}</div>
+        <div class="bottom">
+          <div class="price" @click="showDeatil(g_id)">
+            <el-tooltip effect="dark" content="DOGE" placement="bottom">
+              <img src="../assets/dogecoin.png" class="dogecoin" />
+            </el-tooltip>
+            {{ price }}
+          </div>
+          <el-button type="primary" class="button" @click="addToCart(g_id)"
+            >加入购物车</el-button
+          >
         </div>
-        <el-button type="primary" class="button" @click="addToCart(g_id)"
-          >加入购物车</el-button
-        >
       </div>
     </div>
   </el-card>
@@ -25,9 +32,9 @@ export default {
   data() {
     return {
       price: "199.00",
-      g_name: "好吃的汉堡",
+      g_name: "Hello",
       g_img_url:
-        "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",
+        "https://tva1.sinaimg.cn/large/007e6d0Xgy1gqlz9xm1k5j30c909u3yi.jpg",
       mock_data: {
         price: "1999.00",
         g_name: "Jobs",
@@ -37,9 +44,16 @@ export default {
     };
   },
   mounted() {
-    this.g_name = this.mock_data.g_name;
-    this.g_img_url = this.mock_data.g_img_url;
-    this.price = this.mock_data.price;
+    if (this.g_id % 3 == 0) {
+      this.g_img_url = this.mock_data.g_img_url;
+      this.g_name = this.mock_data.g_name;
+      this.price = this.mock_data.price;
+    } else if (this.g_id % 3 == 1) {
+      this.g_img_url =
+        "https://tva1.sinaimg.cn/large/007e6d0Xgy1gqlz9978wrj30c90ft3yc.jpg";
+      this.g_name = "Command";
+      this.price = "588.00";
+    }
   },
   methods: {
     showDeatil: function (id) {
@@ -96,5 +110,11 @@ export default {
 }
 .image:hover {
   transform: scale(1.25, 1.25);
+}
+.card-content-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>
