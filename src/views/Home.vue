@@ -7,7 +7,7 @@
       :infinite-scroll-disabled="disabled"
       infinite-scroll-distance="100"
     >
-      <el-row :gutter="20">
+      <el-row :gutter="10">
         <el-col
           :xs="24"
           :sm="12"
@@ -97,7 +97,10 @@ export default {
 .card-content {
   border-radius: 4px;
   min-height: 160px;
-  margin: 30px;
+  margin: 5%;
   height: 100%;
+}
+.el-col {
+  margin-bottom: 30px;
 }
 </style>

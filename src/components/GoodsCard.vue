@@ -2,12 +2,12 @@
   <el-card
     :body-style="{ padding: '0px', height: '100%' }"
     shadow="hover"
-    style="height: 90%"
+    style="height: 100%"
   >
     <div class="card-content-container">
       <div></div>
       <img :src="g_img_url" class="image" @click="showDeatil(g_id)" />
-      <div style="padding: 14px">
+      <div style="margin: 14px">
         <div class="good-name" @click="showDeatil(g_id)">{{ g_name }}</div>
         <div class="bottom">
           <div class="price" @click="showDeatil(g_id)">
@@ -104,7 +104,8 @@ export default {
 
 .image {
   margin: 10%;
-  width: 80%;
+  max-width: 80%;
+  max-height: 80%;
   display: block;
   transition: all 0.3s;
 }
