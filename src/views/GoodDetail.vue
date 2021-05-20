@@ -32,41 +32,34 @@
 </template>
 
 <script>
+import { getGood } from "../api/index";
 export default {
   //$route.params.good_id 获取传入的id
   data() {
     return {
-      price: "199.00",
       g_name: "Hello",
       g_img_url:
         "https://tva1.sinaimg.cn/large/007e6d0Xgy1gqlz9xm1k5j30c909u3yi.jpg",
       g_des: "Hello world?",
-      mock_data: {
-        price: "1999.00",
-        g_name: "Jobs",
-        g_img_url:
-          "https://tva1.sinaimg.cn/large/007e6d0Xgy1gqlw0egffjj30c90ftt8l.jpg",
-        g_des:
-          "Do you know that feeling of wonder you get when you travel? \
-        Where even common things seem to be magical and fascinating? \
-        That desire to observe, rather than simply look at, reality?",
-      },
+      price: "199.00",
     };
   },
   mounted() {
-    let g_id = this.$route.params.good_id;
-    if (g_id % 3 == 0) {
-      this.g_img_url = this.mock_data.g_img_url;
-      this.g_name = this.mock_data.g_name;
-      this.price = this.mock_data.price;
-      this.g_des = this.mock_data.g_des;
-    } else if (g_id % 3 == 1) {
-      this.g_img_url =
-        "https://tva1.sinaimg.cn/large/007e6d0Xgy1gqlz9978wrj30c90ft3yc.jpg";
-      this.g_name = "Command";
-      this.price = "588.00";
-      this.g_des = "Command is everything!";
-    }
+    let g_id = this.$route.params.good_id % 3 +1;
+    console.log("查看了",g_id);
+    let params = new URLSearchParams();
+    params.append("g_id", g_id);
+    getGood(params)
+      .then((res) => {
+        console.log(res);
+        this.g_name = res.gName;
+        this.g_img_url = res.gCoverUrl;
+        this.g_des = res.gDescribe;
+        this.price = res.gPrice;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   },
   methods: {
     goBack() {

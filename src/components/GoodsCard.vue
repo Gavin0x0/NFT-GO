@@ -25,6 +25,7 @@
   </el-card>
 </template>
 <script>
+import { getGood } from "../api/index";
 export default {
   props: {
     g_id: Number,
@@ -35,25 +36,23 @@ export default {
       g_name: "Hello",
       g_img_url:
         "https://tva1.sinaimg.cn/large/007e6d0Xgy1gqlz9xm1k5j30c909u3yi.jpg",
-      mock_data: {
-        price: "1999.00",
-        g_name: "Jobs",
-        g_img_url:
-          "https://tva1.sinaimg.cn/large/007e6d0Xgy1gqlw0egffjj30c90ftt8l.jpg",
-      },
     };
   },
   mounted() {
-    if (this.g_id % 3 == 0) {
-      this.g_img_url = this.mock_data.g_img_url;
-      this.g_name = this.mock_data.g_name;
-      this.price = this.mock_data.price;
-    } else if (this.g_id % 3 == 1) {
-      this.g_img_url =
-        "https://tva1.sinaimg.cn/large/007e6d0Xgy1gqlz9978wrj30c90ft3yc.jpg";
-      this.g_name = "Command";
-      this.price = "588.00";
-    }
+    let g_id = (this.$props.g_id % 3) + 1;
+    console.log("查看了", g_id);
+    let params = new URLSearchParams();
+    params.append("g_id", g_id);
+    getGood(params)
+      .then((res) => {
+        console.log(res);
+        this.g_name = res.gName;
+        this.g_img_url = res.gCoverUrl;
+        this.price = res.gPrice;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   },
   methods: {
     showDeatil: function (id) {

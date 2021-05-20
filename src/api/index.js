@@ -8,6 +8,9 @@ export const hello = (params) => get(`hello-servlet`, params);
 //测试servlet
 export const dbtest = () => get(`db-test`);
 
+//测试servlet
+export const getGood = (params) => get(`getGood`,params);
+
 //登陆
 
 /**
