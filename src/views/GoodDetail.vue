@@ -45,17 +45,17 @@ export default {
     };
   },
   mounted() {
-    let g_id = this.$route.params.good_id % 3 +1;
-    console.log("查看了",g_id);
+    let g_id = (this.$route.params.good_id % 3) + 1;
+    console.log("查看了", g_id);
     let params = new URLSearchParams();
     params.append("g_id", g_id);
     getGood(params)
       .then((res) => {
         console.log(res);
-        this.g_name = res.gName;
-        this.g_img_url = res.gCoverUrl;
-        this.g_des = res.gDescribe;
-        this.price = res.gPrice;
+        this.g_name = res.g_name;
+        this.g_img_url = res.g_img_url;
+        this.g_des = res.g_des;
+        this.price = res.price;
       })
       .catch((e) => {
         console.log(e);

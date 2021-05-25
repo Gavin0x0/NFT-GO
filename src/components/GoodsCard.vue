@@ -46,9 +46,9 @@ export default {
     getGood(params)
       .then((res) => {
         console.log(res);
-        this.g_name = res.gName;
-        this.g_img_url = res.gCoverUrl;
-        this.price = res.gPrice;
+        this.g_name = res.g_name;
+        this.g_img_url = res.g_img_url;
+        this.price = res.price;
       })
       .catch((e) => {
         console.log(e);
