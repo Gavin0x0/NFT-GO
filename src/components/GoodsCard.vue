@@ -13,7 +13,7 @@
             style="width: 100%; height: 380px"
             class="skeleton-image"
           />
-          <div style="padding: 14px" class="good-name">
+          <div style="padding: 14px" class="good-card-name">
             <el-skeleton-item variant="h1" style="width: 60%" />
             <el-skeleton-item variant="text" />
             <el-skeleton-item variant="text" />
@@ -30,7 +30,9 @@
             @load="imgLoaded"
           />
           <div style="margin: 14px">
-            <div class="good-name" @click="showDeatil(g_id)">{{ g_name }}</div>
+            <div class="good-card-name" @click="showDeatil(g_id)">
+              {{ g_name }}
+            </div>
             <div class="bottom">
               <div class="price" @click="showDeatil(g_id)">
                 <el-tooltip effect="dark" content="DOGE" placement="bottom">
@@ -77,11 +79,6 @@ export default {
       .catch((e) => {
         console.log(e);
       });
-    // setTimeout(() => {
-    //   if (g_id != 4) {
-    //     this.loading = false;
-    //   }
-    // }, 3000);
   },
   methods: {
     showDeatil: function (id) {
@@ -100,7 +97,7 @@ export default {
 </script>
 
 <style>
-.good-name {
+.good-card-name {
   text-align: left;
   font-size: 1.5rem;
   font-weight: 200;
@@ -143,6 +140,7 @@ export default {
 .template-image {
   max-width: 0%;
   max-height: 0%;
+  display: none;
 }
 .image:hover {
   transform: scale(1.25, 1.25);

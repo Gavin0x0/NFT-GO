@@ -7,28 +7,69 @@
   <div class="row-container">
     <el-row :gutter="20" class="row-align">
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="des-col"
-        ><div class="grid-content describe-container">
-          <div>
-            <div class="good-name">{{ g_name }}</div>
-            <p class="good-describe">{{ g_des }}</p>
-          </div>
-          <div>
-            <div class="good-price">
-              <img src="../assets/dogecoin.png" class="dogecoin" />
-              {{ price }} DOGE
+        ><el-skeleton
+          :loading="loading"
+          animated
+          class="grid-content describe-container"
+        >
+          <template #template>
+            <div>
+              <el-skeleton-item
+                variant="h1"
+                style="height: 60px; width: 100%"
+              />
+              <el-skeleton-item variant="text" />
+              <el-skeleton-item variant="text" />
+              <el-skeleton-item variant="text" />
             </div>
+            <div>
+              <div class="good-price">
+                <img src="../assets/dogecoin.png" class="dogecoin" />
+                <el-skeleton-item
+                  variant="h1"
+                  style="height: 50px; width: 100%"
+                />
+              </div>
+              <el-button type="primary" @click="buyNow">立即购买</el-button>
+              <el-button>加入购物车</el-button>
+            </div>
+          </template>
+          <template #default>
+            <div class="grid-content describe-container">
+              <div>
+                <div class="good-name">{{ g_name }}</div>
+                <p class="good-describe">{{ g_des }}</p>
+              </div>
+              <div>
+                <div class="good-price">
+                  <img src="../assets/dogecoin.png" class="dogecoin" />
+                  {{ price }} DOGE
+                </div>
 
-            <el-button type="primary" @click="buyNow">立即购买</el-button>
-            <el-button>加入购物车</el-button>
-          </div>
-        </div></el-col
-      >
+                <el-button type="primary" @click="buyNow">立即购买</el-button>
+                <el-button>加入购物车</el-button>
+              </div>
+            </div>
+          </template>
+        </el-skeleton>
+      </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="img-col"
         ><div class="grid-content img-container">
-          <img :src="g_img_url" class="good-image" /></div
+          <el-skeleton :loading="loading" animated>
+            <template #template>
+              <el-skeleton-item
+                variant="image"
+                style="height: 600px; width: 100%"
+              />
+            </template>
+            <template #default>
+              <img :src="g_img_url" class="good-image" />
+            </template>
+          </el-skeleton></div
       ></el-col>
     </el-row>
   </div>
+  <img :src="g_img_url" class="template-image" @load="imgLoaded" />
 </template>
 
 <script>
@@ -37,9 +78,9 @@ export default {
   //$route.params.good_id 获取传入的id
   data() {
     return {
+      loading: true,
       g_name: "Hello",
-      g_img_url:
-        "https://tva1.sinaimg.cn/large/007e6d0Xgy1gqlz9xm1k5j30c909u3yi.jpg",
+      g_img_url: "null",
       g_des: "Hello world?",
       price: "199.00",
     };
@@ -66,11 +107,20 @@ export default {
       console.log("go back");
       this.$router.go(-1);
     },
+    imgLoaded() {
+      console.log("加载完毕");
+      this.loading = false;
+    },
   },
 };
 </script>
 
 <style>
+.template-image {
+  max-width: 0%;
+  max-height: 0%;
+  display: none;
+}
 .row-container {
   margin-left: 15%;
   margin-right: 15%;
