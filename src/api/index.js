@@ -3,15 +3,20 @@ import axios from "axios";
 import { get, post, getImg,getFile, postFile } from "./http";
 
 //测试servlet
-export const hello = (params) => get(`hello-servlet`, params);
-
-//测试servlet
 export const dbtest = () => get(`db-test`);
 
-//测试servlet
+//获取商品信息
 export const getGood = (params) => get(`getGood`,params);
 
-//登陆
+/**
+ * 登录（GET）
+ * 需传入的参数
+ * username: str
+ * password: str
+ * @param {URLSearchParams} params
+ * @returns
+ */
+ export const login = (params) => get(`login`,params);
 
 /**
  * 获取验证码（GET）  
