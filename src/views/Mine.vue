@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>This is a mine page</h1>
+    <h1>未登陆，请先登陆</h1>
+    <router-link to="/login">Go to Login</router-link>
   </div>
 </template>
 

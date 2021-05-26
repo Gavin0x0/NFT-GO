@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Cart from "../views/Cart.vue";
 import Mine from "../views/Mine.vue";
+import Login from "../views/Login.vue";
 import GoodDetail from "../views/GoodDetail.vue";
 
 const routes = [
@@ -24,6 +25,11 @@ const routes = [
     path: "/mine",
     name: "Mine",
     component: Mine,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
   },
   {
     path: "/detail/:good_id",

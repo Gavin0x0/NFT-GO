@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
   }
 } else {
   //dev 开发环境
-  axios.defaults.baseURL = "https://nft_api.632891553.xyz";
+  axios.defaults.baseURL = "http://127.0.0.1:8000";
 }
 
 // 响应拦截器
