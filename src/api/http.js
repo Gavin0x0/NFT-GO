@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "production") {
     axios.defaults.baseURL = "https://nft_api.632891553.xyz";
   } else {
     //test 测试环境
-    axios.defaults.baseURL = "http://47.98.222.103/api";
+    axios.defaults.baseURL = "https://nft_api.632891553.xyz";
   }
 } else {
   //dev 开发环境

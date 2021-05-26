@@ -45,7 +45,7 @@ export default {
     };
   },
   mounted() {
-    let g_id = (this.$route.params.good_id % 3) + 1;
+    let g_id = (this.$route.params.good_id % 6) + 1;
     console.log("查看了", g_id);
     let params = new URLSearchParams();
     params.append("g_id", g_id);

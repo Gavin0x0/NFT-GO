@@ -60,7 +60,7 @@ export default {
       setTimeout(() => {
         this.count += 8;
         this.loading = false;
-      }, 1000);
+      }, 500);
     },
   },
 };
