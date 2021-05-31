@@ -1,16 +1,23 @@
 <template>
   <h1>购物车</h1>
-  <el-table :data="goodsData" style="width: 100%" size="medium" align="center">
+  <el-table :data="goodsData" style="width: 100%" align="center">
     <el-table-column prop="g_name" label="商品名" width="auto">
     </el-table-column>
-    <el-table-column prop="num" label="数量" width="200"> </el-table-column>
+    <el-table-column prop="num" label="数量" width="300" align="center">
+      <template #default="scope">
+        <el-input-number
+          v-model="scope.row.num"
+          @change="handleChange(scope.row.g_no, scope.row.num)"
+          size="medium"
+          :min="1"
+          :max="100"
+        ></el-input-number>
+      </template>
+    </el-table-column>
     <el-table-column prop="price" label="单价" width="100"> </el-table-column>
     <el-table-column fixed="right" label="操作" width="180">
       <template #default="scope">
-        <el-button
-          @click.prevent="deleteBook(scope.$index)"
-          type="danger"
-        >
+        <el-button @click.prevent="deleteBook(scope.$index)" type="danger">
           移出购物车
         </el-button>
       </template>
@@ -26,13 +33,14 @@
     :total="dataSize"
   >
   </el-pagination>
+  <el-affix position="bottom" :offset="0" style="margin-top: 30px"> </el-affix>
 </template>
 
 <script>
 import { onMounted } from "@vue/runtime-core";
 import { ElMessage } from "element-plus";
 import { ref } from "vue";
-import { getCartGood } from "../api/index";
+import { getCartGood, removeCart, updateCart } from "../api/index";
 
 export default {
   setup() {
@@ -72,8 +80,41 @@ export default {
         });
     }
     function deleteBook(index) {
-      console.log("删除：", index);
+      console.log("删除商品：", goodsData.value[index].g_no);
+      let params = new URLSearchParams();
+      params.append("g_no", goodsData.value[index].g_no);
+      removeCart(params)
+        .then((res) => {
+          console.log(res);
+          if (res.success) {
+            ElMessage.success("移出成功");
+          } else {
+            ElMessage.error("移出失败");
+          }
+        })
+        .catch((failResponse) => {
+          console.log(failResponse);
+          ElMessage.error("获取信息失败，服务器错误，请联系管理员");
+          ElMessage.error(failResponse.statusText);
+        });
       goodsData.value.splice(index, 1);
+    }
+    function handleChange(g_no, num) {
+      console.log("Update", g_no, num);
+      let params = new URLSearchParams();
+      params.append("g_no", g_no);
+      params.append("num", num);
+      console.log(params);
+      updateCart(params)
+        .then((res) => {
+          console.log(res);
+          if (res.success) {
+            ElMessage.success("更新成功！");
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
     return {
       dataSize,
@@ -82,6 +123,7 @@ export default {
       deleteBook,
       handleSizeChange,
       handleCurrentChange,
+      handleChange,
     };
   },
 };

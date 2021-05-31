@@ -52,7 +52,7 @@ export default {
   },
   computed: {
     noMore() {
-      return this.size*(this.page-1) >= this.totalCount;
+      return this.size * (this.page - 1) >= this.totalCount;
     },
     disabled() {
       return this.loading || this.noMore;
@@ -66,13 +66,13 @@ export default {
       params.append("size", this.size);
       getGoodList(params)
         .then((res) => {
-          console.log(res)
-          this.totalCount = res.data_count
-          let data =res.data
-          for(let g in data){
-            this.count.push(data[g])
+          console.log(res);
+          this.totalCount = res.data_count;
+          let data = res.data;
+          for (let g in data) {
+            this.count.push(data[g]);
           }
-          this.page += 1
+          this.page += 1;
           this.loading = false;
         })
         .catch((e) => {

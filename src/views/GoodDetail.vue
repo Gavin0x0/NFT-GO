@@ -47,7 +47,7 @@
                 </div>
 
                 <el-button type="primary" @click="buyNow">立即购买</el-button>
-                <el-button>加入购物车</el-button>
+                <el-button @click="addToCart(g_no_t)">加入购物车</el-button>
               </div>
             </div>
           </template>
@@ -73,11 +73,14 @@
 </template>
 
 <script>
-import { getGood } from "../api/index";
+import { getGood, addCart } from "../api/index";
+import { ElMessage } from "element-plus";
+
 export default {
   //$route.params.good_id 获取传入的id
   data() {
     return {
+      g_no_t: 0,
       loading: true,
       g_name: "Hello",
       g_img_url: "null",
@@ -86,10 +89,11 @@ export default {
     };
   },
   mounted() {
-    let g_no = (this.$route.params.good_id % 6) + 1;
+    let g_no = this.$route.params.good_id;
     console.log("查看了", g_no);
     let params = new URLSearchParams();
     params.append("g_no", g_no);
+    this.g_no_t = g_no;
     getGood(params)
       .then((res) => {
         console.log(res);
@@ -110,6 +114,21 @@ export default {
     imgLoaded() {
       console.log("加载完毕");
       this.loading = false;
+    },
+    addToCart(id) {
+      console.log("show", id, "to cart");
+      let params = new URLSearchParams();
+      params.append("g_no", id);
+      addCart(params)
+        .then((res) => {
+          console.log(res);
+          if (res.success) {
+            ElMessage.success("加入成功！");
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 };

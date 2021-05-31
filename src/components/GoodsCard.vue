@@ -68,7 +68,8 @@ export default {
     };
   },
   mounted() {
-    let g_no = this.$props.g_no;3
+    let g_no = this.$props.g_no;
+    3;
     let params = new URLSearchParams();
     params.append("g_no", g_no);
     getGood(params)
@@ -94,7 +95,7 @@ export default {
       addCart(params)
         .then((res) => {
           console.log(res);
-          if(res.success){
+          if (res.success) {
             ElMessage.success("加入成功！");
           }
         })

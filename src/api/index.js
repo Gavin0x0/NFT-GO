@@ -11,6 +11,10 @@ export const getGood = (params) => get(`getGood`, params);
 export const getGoodList = (params) => get(`getGoodList`, params);
 //加入购物车
 export const addCart = (params) => get(`addCart`, params);
+//更新购物车
+export const updateCart = (params) => get(`updateCart`, params);
+//移出购物车
+export const removeCart = (params) => get(`removeCart`, params);
 
 //获取商品信息
 export const getCartGood = (params) => get(`getCartGood`, params);
