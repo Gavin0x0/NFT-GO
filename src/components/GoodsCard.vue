@@ -26,21 +26,21 @@
           <img
             :src="g_img_url"
             class="image"
-            @click="showDeatil(g_id)"
+            @click="showDeatil(g_no)"
             @load="imgLoaded"
           />
           <div style="margin: 14px">
-            <div class="good-card-name" @click="showDeatil(g_id)">
+            <div class="good-card-name" @click="showDeatil(g_no)">
               {{ g_name }}
             </div>
             <div class="bottom">
-              <div class="price" @click="showDeatil(g_id)">
+              <div class="price" @click="showDeatil(g_no)">
                 <el-tooltip effect="dark" content="DOGE" placement="bottom">
                   <img src="../assets/dogecoin.png" class="dogecoin" />
                 </el-tooltip>
                 {{ price }}
               </div>
-              <el-button type="primary" class="button" @click="addToCart(g_id)"
+              <el-button type="primary" class="button" @click="addToCart(g_no)"
                 >加入购物车</el-button
               >
             </div>
@@ -52,10 +52,12 @@
   <img :src="g_img_url" class="template-image" @load="imgLoaded" />
 </template>
 <script>
-import { getGood } from "../api/index";
+import { getGood, addCart } from "../api/index";
+import { ElMessage } from "element-plus";
+
 export default {
   props: {
-    g_id: Number,
+    g_no: Number,
   },
   data() {
     return {
@@ -66,9 +68,9 @@ export default {
     };
   },
   mounted() {
-    let g_id = (this.$props.g_id % 6) + 1;
+    let g_no = this.$props.g_no;3
     let params = new URLSearchParams();
-    params.append("g_id", g_id);
+    params.append("g_no", g_no);
     getGood(params)
       .then((res) => {
         //console.log(res);
@@ -87,6 +89,18 @@ export default {
     },
     addToCart: function (id) {
       console.log("show", id, "to cart");
+      let params = new URLSearchParams();
+      params.append("g_no", id);
+      addCart(params)
+        .then((res) => {
+          console.log(res);
+          if(res.success){
+            ElMessage.success("加入成功！");
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     imgLoaded: function () {
       console.log("加载完毕");

@@ -6,7 +6,11 @@
         <el-input v-model="username" placeholder="Username"></el-input>
       </div>
       <div class="input-container">
-        <el-input v-model="password" placeholder="Password" show-password></el-input>
+        <el-input
+          v-model="password"
+          placeholder="Password"
+          show-password
+        ></el-input>
       </div>
       <div class="button-container">
         <el-button type="primary" style="width: 100%" @click="onLogin"

@@ -86,10 +86,10 @@ export default {
     };
   },
   mounted() {
-    let g_id = (this.$route.params.good_id % 6) + 1;
-    console.log("查看了", g_id);
+    let g_no = (this.$route.params.good_id % 6) + 1;
+    console.log("查看了", g_no);
     let params = new URLSearchParams();
-    params.append("g_id", g_id);
+    params.append("g_no", g_no);
     getGood(params)
       .then((res) => {
         console.log(res);

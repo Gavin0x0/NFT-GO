@@ -17,7 +17,7 @@
           v-for="i in count"
           :key="i"
           ><div class="card-content">
-            <goods-card :g_id="i" /></div
+            <goods-card :g_no="i" /></div
         ></el-col>
       </el-row>
     </ul>
@@ -31,6 +31,7 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import GoodsCard from "../components/GoodsCard.vue";
+import { getGoodList } from "../api/index";
 
 //TODO响应式布局
 
@@ -42,13 +43,16 @@ export default {
   },
   data() {
     return {
-      count: 20,
+      count: [],
       loading: false,
+      page: 1,
+      size: 4,
+      totalCount: 100,
     };
   },
   computed: {
     noMore() {
-      return this.count >= 48;
+      return this.size*(this.page-1) >= this.totalCount;
     },
     disabled() {
       return this.loading || this.noMore;
@@ -57,10 +61,23 @@ export default {
   methods: {
     load() {
       this.loading = true;
-      setTimeout(() => {
-        this.count += 8;
-        this.loading = false;
-      }, 500);
+      let params = new URLSearchParams();
+      params.append("page", this.page);
+      params.append("size", this.size);
+      getGoodList(params)
+        .then((res) => {
+          console.log(res)
+          this.totalCount = res.data_count
+          let data =res.data
+          for(let g in data){
+            this.count.push(data[g])
+          }
+          this.page += 1
+          this.loading = false;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 };
