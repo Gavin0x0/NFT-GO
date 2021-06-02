@@ -55,7 +55,7 @@
     small
   >
   </el-pagination>
-  <el-affix position="bottom" :offset="30" style="margin-top: 30px">
+  <el-affix position="bottom" :offset="40" style="margin-top: 30px">
     <div class="count-bar">
       <div class="total-num-text">
         已选择
