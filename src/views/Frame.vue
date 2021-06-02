@@ -18,7 +18,6 @@ export default {
 .el-header,
 .el-footer {
   background-color: #0000001a;
-
   text-align: center;
   font-size: 0.5rem;
   line-height: 4vh;
@@ -38,6 +37,7 @@ export default {
 .el-footer {
   color: #494f55;
   bottom: 0;
+  height: 30px !important;
 }
 
 .el-main {
