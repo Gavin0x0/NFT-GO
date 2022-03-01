@@ -1,7 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <el-button @click="doGetGood">Good</el-button>
+    <h1 @click="doGetGood">在线商场网站</h1>
     <h1>{{ DB_res }}</h1>
   </div>
 </template>
